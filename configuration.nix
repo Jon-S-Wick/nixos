@@ -150,9 +150,8 @@ in
     LC_TIME = "en_US.UTF-8";
   };
 
-	services.xserver = {
+  services.xserver = {
     enable = true;
-
 
     libinput = {
       enable = true;
@@ -167,7 +166,7 @@ in
       #   accelProfile = "flat";
       # };
     };
-	};
+  };
 
   # services.xserver.xkb = {
   #   layout = "us";
@@ -190,7 +189,6 @@ in
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-<<<<<<< HEAD
     (pkgs.buildFHSUserEnv {
       name = "anyconnect";
       targetPkgs =
@@ -219,37 +217,36 @@ in
     globalprotect-openconnect
 
     localsend
-=======
-		(buildFHSUserEnv {
-			name = "anyconnect";
-      targetPkgs = pkgs: with pkgs; [
-        bash
-        coreutils
-        glibc
-        systemd
-        libxcrypt  # Sometimes needed for PAM
-        dbus
-        procps
-        iproute2
-      ];
+    (buildFHSUserEnv {
+      name = "anyconnect";
+      targetPkgs =
+        pkgs: with pkgs; [
+          bash
+          coreutils
+          glibc
+          systemd
+          libxcrypt # Sometimes needed for PAM
+          dbus
+          procps
+          iproute2
+        ];
       runScript = "bash";
-		})
-		nix
+    })
+    nix
     openconnect
     # buildFHSUserEnv
     krb5
-		mesa
-		egl-wayland
-		libsecret
-		wayland
-		wayland-utils
-		kdePackages.wayland-protocols
-		
-		# waland-protocols
+    mesa
+    egl-wayland
+    libsecret
+    wayland
+    wayland-utils
+    kdePackages.wayland-protocols
+
+    # waland-protocols
     xorg.libX11
     nspr
     nss
->>>>>>> master
 
     R
     pipx
@@ -333,30 +330,31 @@ in
     zstd
     gnumake
     python312Packages.zstd
-	# python312Packages.conda
+    # python312Packages.conda
     python312Packages.pybigwig
-		python312Packages.pip
-		python312Packages.matplotlib
-		(python3.withPackages (ps: with ps; [
-			numpy
-			pandas
-			matplotlib
-			dash
-			pybigwig
-			zstd
-			seaborn-data
-			plotly
-		]))
+    python312Packages.pip
+    python312Packages.matplotlib
+    (python3.withPackages (
+      ps: with ps; [
+        numpy
+        pandas
+        matplotlib
+        dash
+        pybigwig
+        zstd
+        seaborn-data
+        plotly
+      ]
+    ))
     python312
-		virtualenv
-		# conda
-  # (python3.withPackages (p: [ p.mypy ]))
-
+    virtualenv
+    # conda
+    # (python3.withPackages (p: [ p.mypy ]))
 
     gh
 
     gtk4
-		gtk3
+    gtk3
     gsettings-desktop-schemas
 
     glib
@@ -383,7 +381,6 @@ in
 
     micromamba
 
-
     fish
     zsh
     perl
@@ -400,15 +397,12 @@ in
     distrobox-tui
   ];
 
-<<<<<<< HEAD
-=======
   # environment.variables = {
   #
   #   LD_LIBRARY_PATH =
   #     "${pkgs.gcc}/lib:/nix/store/kvrhj41ziwxpaz10fql4xypqzvfq3yp7-system-path/lib:$LD_LIBRARY_PATH";
   #
   # };
->>>>>>> master
   nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
 
   virtualisation.vmware.host.enable = true;
@@ -426,13 +420,10 @@ in
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
   services = {
-<<<<<<< HEAD
     desktopManager.plasma6.enable = true;
 
-=======
     # desktopManager.plasma6.enable = true;
     #
->>>>>>> master
     libinput.enable = true;
     blueman.enable = true;
     pipewire = {
@@ -461,7 +452,6 @@ in
           compositor = "kwin";
         };
         # package = pkgs.libsForQt5.sddm;
-<<<<<<< HEAD
         extraPackages = with pkgs; [
           # sddm-sugar-dark
           sddm-candy
@@ -485,7 +475,6 @@ in
             CursorTheme = "bibata-cursors";
           };
         };
-=======
         # extraPackages = with pkgs; [
         #   # sddm-sugar-dark
         #   sddm-candy
@@ -509,7 +498,6 @@ in
         #     CursorTheme = "bibata-cursors";
         #   };
         # };
->>>>>>> master
       };
       sessionPackages = [ pkgs.hyprland ];
     };
@@ -541,52 +529,47 @@ in
     gdk-pixbuf-xlib
     webp-pixbuf-loader
     xorg.libXrender
+    xorg.libXrandr
 
-  ];
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc
     zlib
     fuse3
     icu
-    nss
     openssl
     curl
     expat
-		#for openconnect-sso
-		libsecret
-    nss
+    #for openconnect-sso
+    libsecret
     krb5
     xorg.libX11
     nspr
-		xorg.libXcomposite
-		xorg.libXdamage
-		xorg.libXext
-		xorg.libXfixes
-		xorg.libXrender
-		x11basic
-		# xorg.xlibs
-		#for cisco annyconenct
-		gcc
-		glibc
+    xorg.libXcomposite
+    xorg.libXdamage
+    xorg.libXext
+    xorg.libXfixes
+    xorg.libXrender
+    x11basic
+    # xorg.xlibs
+    #for cisco annyconenct
+    gcc
+    glibc
     libglibutil
-		
-		glib
-		libxml2
-		xorg.libXrandr
-		gtk3
-		atk
-		pango
-		gdtoolkit_3
-		gdk-pixbuf
-		cairo
-		xorg.xhost
-		libgtkflow3
-		webkitgtk
-		libsoup
-		gdk-pixbuf
-		shared-mime-info
 
+    glib
+    libxml2
+    xorg.libXrandr
+    gtk3
+    atk
+    pango
+    gdtoolkit_3
+    gdk-pixbuf
+    cairo
+    xorg.xhost
+    libgtkflow3
+    webkitgtk
+    libsoup
+    gdk-pixbuf
+    shared-mime-info
 
   ];
   programs.dconf.enable = true;
